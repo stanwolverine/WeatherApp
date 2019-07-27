@@ -1,5 +1,3 @@
-console.log('Client side javasript file is cnnected!');
-
 const weatherForm = document.querySelector('form');
 const searchInput = document.querySelector('input');
 const errorMsg = document.querySelector('#error-msg');
