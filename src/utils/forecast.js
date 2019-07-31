@@ -21,7 +21,8 @@ const forecast = (latitude, longitude, callback) => {
     'https://api.darksky.net/forecast/094e3517f8843053b48d7e68a87dc320/' +
     latitude +
     ',' +
-    longitude;
+    longitude +
+    '?units=si';
 
   request({ url, json: true }, (error, response) => {
     if (error) {
@@ -39,6 +40,10 @@ const forecast = (latitude, longitude, callback) => {
     } else {
       callback(undefined, {
         temperature: response.body.currently.temperature,
+        highTemperature: response.body.daily.data[0].temperatureHigh,
+        highTemperatureTime: response.body.daily.data[0].temperatureHighTime,
+        lowTemperature: response.body.daily.data[0].temperatureLow,
+        lowTemperatureTime: response.body.daily.data[0].temperatureLowTime,
         rainChances: response.body.currently.precipProbability,
         summary: response.body.currently.summary
       });

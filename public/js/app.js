@@ -5,6 +5,10 @@ const weatherReportOne = document.querySelector('#forecast-msg-1');
 const weatherReportTwo = document.querySelector('#forecast-msg-2');
 const weatherReportThree = document.querySelector('#forecast-msg-3');
 const weatherReportFour = document.querySelector('#forecast-msg-4');
+const weatherReportFive = document.querySelector('#forecast-msg-5');
+const weatherReportSix = document.querySelector('#forecast-msg-6');
+const weatherReportSeven = document.querySelector('#forecast-msg-7');
+const weatherReportEight = document.querySelector('#forecast-msg-8');
 
 weatherForm.addEventListener('submit', e => {
   e.preventDefault();
@@ -17,6 +21,10 @@ weatherForm.addEventListener('submit', e => {
   weatherReportTwo.textContent = '';
   weatherReportThree.textContent = '';
   weatherReportFour.textContent = '';
+  weatherReportFive.textContent = '';
+  weatherReportSix.textContent = '';
+  weatherReportSeven.textContent = '';
+  weatherReportEight.textContent = '';
 
   fetch(weatherUrl)
     .then(response => response.json())
@@ -27,9 +35,17 @@ weatherForm.addEventListener('submit', e => {
         errorMsg.textContent = '';
         weatherReportOne.textContent = 'Summary: ' + response.forecast;
         weatherReportTwo.textContent =
-          'Temperature (In Far.): ' + response.currentTemperature;
+          'Temperature (In Celcius): ' + response.currentTemperature;
         weatherReportThree.textContent = 'Location: ' + response.location;
-        weatherReportFour.textContent = 'Search Term: ' + response.searchTerm;
+        weatherReportFour.textContent =
+          'High Temperature: ' + response.highTemperature;
+        weatherReportFive.textContent =
+          'High Temperature Time: ' + Date(response.highTemperatureTime);
+        weatherReportSix.textContent =
+          'Low Temperature: ' + response.lowTemperature;
+        weatherReportSeven.textContent =
+          'Low Temperature Time: ' + Date(response.lowTemperatureTime);
+        weatherReportEight.textContent = 'Search Term: ' + response.searchTerm;
       }
     });
 });

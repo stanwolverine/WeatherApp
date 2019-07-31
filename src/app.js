@@ -61,7 +61,18 @@ app.get('/weather', (req, res) => {
       forecast(
         latitude,
         longitude,
-        (error, { summary, temperature, rainChances } = {}) => {
+        (
+          error,
+          {
+            summary,
+            temperature,
+            rainChances,
+            highTemperature,
+            highTemperatureTime,
+            lowTemperature,
+            lowTemperatureTime
+          } = {}
+        ) => {
           if (error) {
             return res.send({ error });
           }
@@ -70,6 +81,10 @@ app.get('/weather', (req, res) => {
             currentTemperature: temperature,
             rainProbability: rainChances,
             location,
+            highTemperature,
+            highTemperatureTime,
+            lowTemperature,
+            lowTemperatureTime,
             searchTerm: req.query.address
           });
         }
